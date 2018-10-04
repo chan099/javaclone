@@ -1,0 +1,26 @@
+node{
+    stage('scm checkout'){
+        git 'https://github.com/sandeep212/javaclone.git'
+    }
+    
+    stage('build the code'){
+        sh 'mvn clean package'
+
+    }
+    stage('build the docker image'){
+        sh 'docker build -t sandeep212/sandy:1.0.0 .'
+    }
+    stage('push the code to  hub'){
+        withCredentials([string(credentialsId: 'docker', variable: 'dockerpwd')]) {
+        sh "docker login -u sandeep212 -p ${dockerpwd}"
+        
+}
+        sh 'docker push sandeep212/sandy:1.0.0'
+    }
+    stage('run container in dev server'){
+        sshagent(['tomcat']){
+        sh 'ssh -o StrictHostKeyChecking=no ec2-user@172.31.26.42 docker run -d -p 8080:8080 --name tom sandeep212/sandy:1.0.0'
+}
+        
+    }
+}
