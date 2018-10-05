@@ -17,5 +17,8 @@ node{
                   error "Pipeline aborted due to quality gate failure: ${qg.status}"
               }
           }
-      }        
+      }  
+   stage('email notification'){
+     mail bcc: '', body: 'build sucessfully', cc: '', from: '', replyTo: '', subject: 'jenkins ', to: 'sandeepchowdary512@gmail.com'   
+   }
 }
