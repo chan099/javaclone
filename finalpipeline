@@ -41,10 +41,9 @@ node{
   }
   stage('tomcat deploy'){
     sshagent(['tomcat']) {
-    sh 'mkdir tmp'
     sh 'cd tmp'
     sh 'wget http://18.222.205.51:8081/nexus/content/repositories/java/java/05372018/15/05372018-15.war'
-     sh 'scp -o StrictHostKeyChecking=no *tmp/.war ec2-user@18.222.205.51:/home/ec2-user/apache-tomcat-8.5.34/webapps/'
+     sh 'scp -o StrictHostKeyChecking=no tmp/*.war ec2-user@18.222.205.51:/home/ec2-user/apache-tomcat-8.5.34/webapps/'
   }
 }
 
