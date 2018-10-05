@@ -21,10 +21,9 @@ node{
    stage('email notification'){
      mail bcc: '', body: 'build sucessfully', cc: '', from: '', replyTo: '', subject: 'jenkins ', to: 'sandeepchowdary512@gmail.com'   
    }
-   stage('slack notifications'){
-     slackSend baseUrl: 'https://hooks.slack.com/services/', 
-     message: 'from jenkins', 
-     token: 'T5QCFE6AW/BA5HVLQDR/CxITtZ5mIGpy4yu76zroGxC3', 
-     tokenCredentialId: 'slack2'
-   }
+   slackSend baseUrl: 'https://hooks.slack.com/services/', 
+   channel: 'sampleslacknots', 
+   message: 'from jenkins', 
+   token: 'T5QCFE6AW/BA5HVLQDR/CxITtZ5mIGpy4yu76zroGxC3', 
+   tokenCredentialId: 'slack2'
 }
