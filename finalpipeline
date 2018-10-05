@@ -35,12 +35,7 @@ node{
    tokenCredentialId: 'slack2'
   }
   stage('nexus artifact uploader'){
-    nexusArtifactUploader artifacts: [[artifactId: '$BUILD_TIMESTAMP', 
-    classifier: '', 
-    file: '/var/lib/jenkins/workspace/finalpipeline-jenkins/target/myweb-0.0.1.war', 
-    type: 'war']], credentialsId: 'nexus', groupId: 'java', 
-    nexusUrl: '18.222.205.51:8081/nexus/', 
-    nexusVersion: 'nexus2', protocol: 'http', repository: 'javas', version: '$BUILD_ID'
+    nexusArtifactUploader artifacts: [[artifactId: '$BUILD_TIMESTAMP', classifier: '', file: '/var/lib/jenkins/workspace/finalpipeline-jenkins/target/myweb-0.0.1.war', type: 'war']], credentialsId: 'nexus', groupId: 'java', nexusUrl: '18.222.205.51:8081/nexus', nexusVersion: 'nexus2', protocol: 'http', repository: 'java', version: '$BUILD_ID'
 
 
   }
